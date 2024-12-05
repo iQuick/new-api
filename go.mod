@@ -16,7 +16,7 @@ require (
 	github.com/bytedance/sonic v1.12.4
 	github.com/gin-contrib/cors v1.4.0
 	github.com/gin-contrib/gzip v0.0.6
-	github.com/gin-contrib/sessions v0.0.5
+	github.com/gin-contrib/sessions v0.0.4
 	github.com/gin-contrib/static v0.0.1
 	github.com/gin-gonic/gin v1.9.1
 	github.com/go-playground/validator/v10 v10.19.0
@@ -34,8 +34,8 @@ require (
 	golang.org/x/image v0.15.0
 	gorm.io/driver/mysql v1.4.3
 	gorm.io/driver/postgres v1.5.2
-	gorm.io/driver/sqlite v1.4.3
-	gorm.io/gorm v1.25.0
+	gorm.io/driver/sqlite v1.5.6
+	gorm.io/gorm v1.25.7-0.20240204074919-46816ad31dde
 )
 
 require (
@@ -71,7 +71,7 @@ require (
 	github.com/klauspost/cpuid/v2 v2.2.9 // indirect
 	github.com/leodido/go-urn v1.4.0 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
-	github.com/mattn/go-sqlite3 v2.0.3+incompatible // indirect
+	github.com/mattn/go-sqlite3 v1.14.24 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
 	github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd // indirect
 	github.com/modern-go/reflect2 v1.0.2 // indirect
