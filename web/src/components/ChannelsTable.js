@@ -43,6 +43,19 @@ function renderTimestamp(timestamp) {
 
 let type2label = undefined;
 
+function renderTag(tag) {
+  return (
+      <Tag
+          color='yellow'
+          size='large'
+          shape='square'
+          type='light'
+      >
+        {tag}
+      </Tag>
+  );
+}
+
 function renderType(type) {
   if (!type2label) {
     type2label = new Map();
@@ -111,6 +124,16 @@ const ChannelsTable = () => {
         } else {
           return <>{renderTagType(0)}</>;
         }
+      }
+    },
+    {
+      title: '标签',
+      dataIndex: 'tag',
+      render: (text, record, index) => {
+        if (record.tag) {
+          return <>{renderTag(text)}</>;
+        }
+        return '';
       }
     },
     {
