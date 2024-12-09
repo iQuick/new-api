@@ -7,5 +7,6 @@ build
 *.db-journal
 logs
 web/dist
+pprof
 .env
 .datas
