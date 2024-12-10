@@ -29,6 +29,9 @@ const SystemSetting = () => {
     ServerAddress: '',
     WorkerUrl: '',
     WorkerValidKey: '',
+    OutProxyUrl: '',
+    OutProxyUsername: '',
+    OutProxyPassword: '',
     EpayId: '',
     EpayKey: '',
     Price: 7.3,
@@ -182,11 +185,17 @@ const SystemSetting = () => {
     await updateOption('ServerAddress', ServerAddress);
   };
 
-  const submitWorker = async () => {
+  const submitWorkerAndProxy = async () => {
     let WorkerUrl = removeTrailingSlash(inputs.WorkerUrl);
     await updateOption('WorkerUrl', WorkerUrl);
     if (inputs.WorkerValidKey !== '') {
       await updateOption('WorkerValidKey', inputs.WorkerValidKey);
+    }
+    let OutProxyUrl = removeTrailingSlash(inputs.OutProxyUrl);
+    await updateOption('OutProxyUrl', OutProxyUrl);
+    if (inputs.OutProxyUrl !== '') {
+      await updateOption('OutProxyUsername', inputs.OutProxyUsername)
+      await updateOption('OutProxyPassword', inputs.OutProxyPassword)
     }
   };
 
@@ -384,7 +393,32 @@ const SystemSetting = () => {
               onChange={handleInputChange}
             />
           </Form.Group>
-          <Form.Button onClick={submitWorker}>更新Worker设置</Form.Button>
+          <Form.Group widths='equal'>
+            <Form.Input
+                label='出口代理地址'
+                placeholder='例如：http://1.2.3.4:8888'
+                value={inputs.OutProxyUrl}
+                name='OutProxyUrl'
+                onChange={handleInputChange}
+            />
+            <Form.Input
+                label='认证用户名，无则不填写'
+                placeholder='例如：username'
+                value={inputs.OutProxyUsername}
+                name='OutProxyUsername'
+                onChange={handleInputChange}
+            />
+            <Form.Input
+                label='认证密码，无则不填写'
+                placeholder='例如：password'
+                value={inputs.OutProxyPassword}
+                name='OutProxyPassword'
+                onChange={handleInputChange}
+            />
+          </Form.Group>
+          <Form.Button onClick={submitWorkerAndProxy}>更新代理设置</Form.Button>
+
+
           <Divider />
           <Header as='h3' inverted={isDark}>
             支付设置（当前仅支持易支付接口，默认使用上方服务器地址作为回调地址！）

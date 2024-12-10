@@ -19,6 +19,9 @@ func DoImageRequest(originUrl string) (resp *http.Response, err error) {
 		// post request to worker
 		data := []byte(`{"url":"` + originUrl + `","key":"` + constant.WorkerValidKey + `"}`)
 		return http.Post(constant.WorkerUrl, "application/json", bytes.NewBuffer(data))
+	} else if constant.EnableOutProxy() {
+		common.SysLog(fmt.Sprintf("downloading image from proxy: %s", originUrl))
+		return ProxiedHttpGet(originUrl)
 	} else {
 		common.SysLog(fmt.Sprintf("downloading image from origin: %s", originUrl))
 		return http.Get(originUrl)

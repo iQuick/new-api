@@ -12,6 +12,17 @@ import (
 	"strings"
 )
 
+func IsImageUrl(url string) (bool, error) {
+	resp, err := ProxiedHttpHead(url)
+	if err != nil {
+		return false, err
+	}
+	if !strings.HasPrefix(resp.Header.Get("Content-Type"), "image/") {
+		return false, nil
+	}
+	return true, nil
+}
+
 func DecodeBase64ImageData(base64String string) (image.Config, string, string, error) {
 	// 去除base64数据的URL前缀（如果有）
 	if idx := strings.Index(base64String, ","); idx != -1 {
@@ -33,6 +44,11 @@ func DecodeBase64ImageData(base64String string) (image.Config, string, string, e
 
 // GetImageFromUrl 获取图片的类型和base64编码的数据
 func GetImageFromUrl(url string) (mimeType string, data string, err error) {
+	isImage, err := IsImageUrl(url)
+	if !isImage {
+		return
+	}
+
 	resp, err := DoImageRequest(url)
 	if err != nil {
 		return
