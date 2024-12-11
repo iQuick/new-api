@@ -19,7 +19,7 @@ func GetProxiedHttpClient(proxyUrl string, proxyUsername string, proxyPassword s
 
 	if proxyUsername != "" && proxyPassword != "" {
 		u, err := url.Parse(proxyUrl)
-		if err != nil {
+		if err == nil {
 			proxyUrl = fmt.Sprintf("%s://%s:%s@%s", u.Scheme, proxyUsername, proxyPassword, u.Host)
 		}
 	}
